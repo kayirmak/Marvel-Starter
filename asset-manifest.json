@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Marvel-Starter/static/css/main.04b46eb5.chunk.css",
+    "main.js": "/Marvel-Starter/static/js/main.63ff12f9.chunk.js",
+    "main.js.map": "/Marvel-Starter/static/js/main.63ff12f9.chunk.js.map",
+    "runtime-main.js": "/Marvel-Starter/static/js/runtime-main.2b8c068b.js",
+    "runtime-main.js.map": "/Marvel-Starter/static/js/runtime-main.2b8c068b.js.map",
+    "static/js/2.5e8bb286.chunk.js": "/Marvel-Starter/static/js/2.5e8bb286.chunk.js",
+    "static/js/2.5e8bb286.chunk.js.map": "/Marvel-Starter/static/js/2.5e8bb286.chunk.js.map",
+    "index.html": "/Marvel-Starter/index.html",
+    "static/css/main.04b46eb5.chunk.css.map": "/Marvel-Starter/static/css/main.04b46eb5.chunk.css.map",
+    "static/js/2.5e8bb286.chunk.js.LICENSE.txt": "/Marvel-Starter/static/js/2.5e8bb286.chunk.js.LICENSE.txt",
+    "static/media/error.42292aa1.gif": "/Marvel-Starter/static/media/error.42292aa1.gif",
+    "static/media/mjolnir.61f31e18.png": "/Marvel-Starter/static/media/mjolnir.61f31e18.png",
+    "static/media/vision.067d4ae1.png": "/Marvel-Starter/static/media/vision.067d4ae1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2b8c068b.js",
+    "static/js/2.5e8bb286.chunk.js",
+    "static/css/main.04b46eb5.chunk.css",
+    "static/js/main.63ff12f9.chunk.js"
+  ]
+}
