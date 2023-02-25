@@ -3,7 +3,7 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 
 class ErrorBoundary extends Component {
   state = {
-  error: false
+    error: false
   }
 
   componentDidCatch(error, errorInfo) {
