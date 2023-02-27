@@ -32,7 +32,7 @@ const App = () => {
                             <Route
                                 path="/characters/:dataId"
                                 element={<SinglePage
-                                    Component={SingleComicPage}
+                                    Component={SingleCharPage}
                                     dataType="character" 
                                 />}
                             />

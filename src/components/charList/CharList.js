@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -8,6 +8,25 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import './charList.scss';
 
+const setContent = (process, Component, newItemLoading) => {
+    switch (process) {
+        case 'waiting':
+            return <Spinner />;
+    
+        case 'loading':
+            return newItemLoading ? <Component /> : <Spinner />;
+
+        case 'confirmed':
+            return <Component />;
+
+        case 'error':
+            return <ErrorMessage />;
+
+        default:
+            throw new Error('Unexpected process state');
+    }
+}
+
 const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
@@ -15,16 +34,18 @@ const CharList = (props) => {
     const [offset, setOffset] = useState(210);
     const [charEnded, setCharEnded] = useState(false);
 
-    const {loading, error, getAllCharacters} = useMarvelService();
+    const {getAllCharacters, process, setProcess} = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
+        // eslint-disable-next-line
     }, [])
 
     const onRequest = (offset, initial) => {
         initial ? setNewItemLoading(false) : setNewItemLoading(true);
         getAllCharacters(offset)
             .then(onCharListLoaded)
+            .then(() => setProcess('confirmed'));
     }
         
     const onCharListLoaded = (newCharList) => {
@@ -33,9 +54,9 @@ const CharList = (props) => {
             ended = true
         }
 
-        setCharList(charList => [...charList, ...newCharList]);
+        setCharList([...charList, ...newCharList]);
         setNewItemLoading(false);
-        setOffset(offset => offset + 9);
+        setOffset(offset + 9);
         setCharEnded(ended);
     }
 
@@ -56,11 +77,11 @@ const CharList = (props) => {
             
             return (
                 <CSSTransition
+                    key={item.id}
                     timeout={500}
                     classNames="char__item"
                 >
                     <li 
-                        key={item.id}
                         className="char__item"
                         tabIndex={0}
                         ref={el => itemRefs.current[idx] = el}
@@ -90,18 +111,15 @@ const CharList = (props) => {
             </ul>
         )
     }
-    
 
-    const items = renderItems(charList);
+    const elements = useMemo(() => {
+        return setContent(process, () => renderItems(charList), newItemLoading);
+        // eslint-disable-next-line
+    }, [process]);
     
-    const spinner = loading && !newItemLoading ? <Spinner /> : null;
-    const errorMessage = error ? <ErrorMessage /> : null;
-
     return (
         <div className="char__list">
-            {spinner}
-            {errorMessage}
-            {items}
+            {elements}
             <button 
                 className="button button__main button__long"
                 disabled={newItemLoading}

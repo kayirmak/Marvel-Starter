@@ -2,7 +2,6 @@ import "./singleCharacterLayout.scss";
 
 function SingleCharacterLayout({data}) {
     const {name, description, thumbnail} = data;
-    
     return (
         <div className="single-comic">
             <img src={thumbnail} alt={name} className="single-comic__char-img"/>
