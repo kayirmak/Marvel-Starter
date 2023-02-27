@@ -12,7 +12,7 @@ const SingleCharPage = lazy(() => import('../pages/singleCharacterLayout/SingleC
 const SinglePage = lazy(() => import('../pages/SinglePage'));
 
 const App = () => {
-
+    const baseUrl = '/Marvel-Starter';
     return (
         <Router>
             <div className="app">
@@ -20,23 +20,23 @@ const App = () => {
                 <main>
                     <Suspense fallback={<Spinner />}>
                         <Routes>
-                            <Route path="/" element={<MainPage />} />
-                            <Route path="/comics" element={<ComicsPage />} />
+                            <Route path={`${baseUrl}/`} element={<MainPage />} />
+                            <Route path={`${baseUrl}/comics`} element={<ComicsPage />} />
                             <Route
-                                path="/comics/:dataId"
+                                path={`${baseUrl}/comics/:dataId`}
                                 element={<SinglePage 
                                     Component={SingleComicPage}
                                     dataType="comic" 
                                 />} 
                             />
                             <Route
-                                path="/characters/:dataId"
+                                path={`${baseUrl}/characters/:dataId`}
                                 element={<SinglePage
                                     Component={SingleCharPage}
                                     dataType="character" 
                                 />}
                             />
-                            <Route path="*" element={<Page404 />} />
+                            <Route path={`${baseUrl}/*`} element={<Page404 />} />
                         </Routes>
                     </Suspense>
                 </main>
